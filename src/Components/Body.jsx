@@ -8,21 +8,26 @@ export class Body extends Component {
     super(props)
   
     this.state = {
-      formData: {}
+      formDataList: []
     };
   }
 
   updateData = (data) => {
-    this.setState({ formData: data }, () => {
-      console.log(this.state);
-    });
+    this.setState(
+      (prevState) => ({
+        formDataList: [...prevState.formDataList, data]
+      }),
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   render() {
     return (
       <div className=' mt-21 p-6 grid grid-cols-[1fr_2fr] gap-8 font-["Inter"] items-start'>
         <AddCustomer sendData={this.updateData} />
-        <CustomerList />
+        <CustomerList data={this.state.formDataList} />
       </div>
     )
   }
