@@ -14,11 +14,25 @@ export class Body extends Component {
 
   updateData = (data) => {
     this.setState(
-      (prevState) => ({
-        formDataList: [...prevState.formDataList, data]
-      })
+      (prevState) => {
+        const updatedList = [...prevState.formDataList, data];
+
+        // save to localStorage
+        localStorage.setItem('crmData', JSON.stringify(updatedList));
+        
+        return { formDataList: updatedList };
+      }
     );
   };
+
+  // Load saved data
+  componentDidMount() {
+    const savedData = localStorage.getItem('crmData') || [];
+
+    this.setState({
+      formDataList: JSON.parse(savedData)
+    });
+  }
 
   render() {
     return (
