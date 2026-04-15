@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 
 class AddCustomer extends Component {
 
+  initialState = {
+    name: "",
+    email: "",
+    phone: ""
+  };
+
   constructor(props) {
     super(props)
   
-    this.state = {
-      name: "",
-      email: "",
-      phone: ""
-    };
+    this.state = this.initialState;
   }
 
   handleChange = (e) => {
@@ -25,6 +27,8 @@ class AddCustomer extends Component {
     e.preventDefault();
     console.log(this.state);
     sendData(this.state);
+
+    this.setState(this.initialState);
   }
 
   render() {
@@ -40,19 +44,19 @@ class AddCustomer extends Component {
           {/* Input Name */}
           <div>
             <label htmlFor="" className='text-sm mb-2 block'>Name</label>
-            <input type="text" name='name' onChange={this.handleChange} placeholder='Full name' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
+            <input type="text" name='name' value={this.state.name} onChange={this.handleChange} placeholder='Full name' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
           </div>
 
           {/* Input Email */}
           <div>
             <label htmlFor="" className='text-sm mb-2 block'>Email</label>
-            <input type="text" name='email' onChange={this.handleChange} placeholder='email@company.com' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
+            <input type="text" name='email' value={this.state.email} onChange={this.handleChange} placeholder='email@company.com' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
           </div>
 
           {/* Input Phone */}
           <div>
             <label htmlFor="" className='text-sm mb-2 block'>Phone</label>
-            <input type="text" name='phone' onChange={this.handleChange} placeholder='+1 (555) 000-0000' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
+            <input type="text" name='phone' value={this.state.phone} onChange={this.handleChange} placeholder='+1 (555) 000-0000' className='border rounded-xl border-[#E1E3E4] px-4 py-3 text-sm outline-none w-full'/>
           </div>
 
           {/* Add Button */}
