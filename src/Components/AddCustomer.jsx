@@ -25,9 +25,7 @@ class AddCustomer extends Component {
     const { sendData } = this.props;
 
     e.preventDefault();
-    console.log(this.state);
     sendData(this.state);
-
     this.setState(this.initialState);
   }
 

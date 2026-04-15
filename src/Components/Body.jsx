@@ -16,10 +16,7 @@ export class Body extends Component {
     this.setState(
       (prevState) => ({
         formDataList: [...prevState.formDataList, data]
-      }),
-      () => {
-        console.log(this.state);
-      }
+      })
     );
   };
 
