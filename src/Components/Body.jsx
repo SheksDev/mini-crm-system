@@ -31,14 +31,27 @@ export class Body extends Component {
 
     this.setState({
       formDataList: JSON.parse(savedData)
-    });
-  }
+    })
+  };
+
+  // Delete an item
+  handleDelete = (indexToDelete) => {
+    this.setState((prevState) => {
+      const updatedList = prevState.formDataList.filter(
+        (_, index) => index !== indexToDelete
+      );
+
+      localStorage.setItem('crmData', JSON.stringify(updatedList));
+
+      return { formDataList: updatedList };
+    })
+  };
 
   render() {
     return (
       <div className=' mt-21 p-6 grid grid-cols-[1fr_2fr] gap-8 font-["Inter"] items-start'>
         <AddCustomer sendData={this.updateData} />
-        <CustomerList data={this.state.formDataList} />
+        <CustomerList data={this.state.formDataList} deleteItem={this.handleDelete} />
       </div>
     )
   }
